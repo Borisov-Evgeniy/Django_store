@@ -1,0 +1,16 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">Название товара:</label>
+    <input type="text" name="name" required>
+    
+    <label for="description">Описание:</label>
+    <textarea name="description" required></textarea>
+    
+    <label for="price">Цена:</label>
+    <input type="number" name="price" required>
+    
+    <label for="image">Изображение:</label>
+    <input type="file" name="image" accept="image/*" required>
+    
+    <button type="submit">Добавить товар</button>
+</form>

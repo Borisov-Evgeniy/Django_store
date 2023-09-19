@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<h1> Хиты продаж: </h1>
+{% for product in products %}
+<div class="wrapper_1">
+    <div class="product">
+        <img src="{{ product.image.url }}" alt="no_image">
+        <h3><a href="{{ product.url }}" target="_blank">{{ product.name }}</a></h3>
+        <h4>{{ product.price }}</h4>
+        <p>{{ product.description | slice:":20" }}...</p>
+        {% if user.is_superuser %}
+        <form method="post" class="edit" action="{% url 'edit_product' product.id %}">
+            {% csrf_token %}
+            <button class="btn">Изменить</button>
+        </form>
+        <form method="post" class="delete" action="{% url 'delete_product' product.id %}">
+            {% csrf_token %}
+            <button class="btn">Удалить</button>
+        </form>
+        <form method="post" class="add_newproduct" action="{% url 'add_product' %}">
+            {% csrf_token %}
+            <button class="btn">Добавить новый товар</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

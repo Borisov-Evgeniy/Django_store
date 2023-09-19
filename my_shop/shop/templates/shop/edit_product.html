@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+  <h1>Редактировать продукт</h1>
+  <form method="post" class="product-form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Название:</label>
+      <input type="text" id="name" name="name" value="{{ product.name }}">
+    </div>
+    <div class="form-group">
+      <label for="description">Описание:</label>
+      <textarea id="description" name="description">{{ product.description }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Цена:</label>
+      <input type="text" id="price" name="price" value="{{ product.price }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+  </form>
+  <a href="{% url 'home' %}" class="btn btn-secondary">Отменить</a>
+{% endblock %}
