@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+  <h1>Корзина</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Товар</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cart_item in cart_items %}
+        <tr>
+          <td>{{ cart_item.product.title }}</td>
+          <td>{{ cart_item.product.price }}</td>
+          <td>{{ cart_item.quantity }}</td>
+          <td>{{ cart_item.subtotal }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p>Общая сумма: {{ cart.total }}</p>
+  <p>Количество товаров в корзине: {{ cart_items.count }}</p>
+
+  <a href="{% url 'cart:cart' %}" class="btn">Оформить заказ</a>
+{% endblock %}

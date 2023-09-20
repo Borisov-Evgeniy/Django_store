@@ -62,7 +62,7 @@ def delete_product(request, product_id):
     return render(request, 'shop/delete_product.html', {'product': product})
 
 
-@user_passes_test(lambda user: user.is_superuser)
+
 @user_passes_test(lambda user: user.is_superuser)
 def edit_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

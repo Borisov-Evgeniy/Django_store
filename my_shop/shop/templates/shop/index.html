@@ -9,6 +9,10 @@
         <h3><a href="{{ product.url }}" target="_blank">{{ product.name }}</a></h3>
         <h4>{{ product.price }}</h4>
         <p>{{ product.description | slice:":20" }}...</p>
+        <form method="POST" action="{% url 'cart:add_to_cart' product.id %}">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
         {% if user.is_superuser %}
         <form method="post" class="edit" action="{% url 'edit_product' product.id %}">
             {% csrf_token %}
